@@ -4,10 +4,14 @@
 */
 
 html,body {
-    /* background-image: url("../images/tetris-background.jpeg");
-    background-size: cover; */
     height: 100%;
     margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
 }
 
 /* 
@@ -25,3 +29,7 @@ html,body {
 /* 
     CLASSES
 */
+
+.logo {
+    width: 200px;
+}
