@@ -37,7 +37,8 @@ header {
 }
 
 #game-canvas {
-    background-color: rgb(26,26,26);
+    background-color: rgb(117, 113, 113);
+    border-radius: 5px;
 }
 
 #sidebar {
