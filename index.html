@@ -9,15 +9,23 @@
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
 <body>
+    <!-- div placed to add background image -->
     <div id="background">
+
+        <!-- Logo -->
         <header>
             <img class="logo" src="./images/tetris_logo.png" alt="tetris logo">
         </header>
+
+        <!-- Main contrainer: holds instructions, game and info sidebar -->
         <div id="main-container">
+            <!-- Game instructions (left sidebar) -->
             <div id="instructions" class="content-container"></div>
+            <!-- Game -->
             <div id="game" class="content-container">
                 <canvas id="game-canvas" width="350" height="600"></canvas>
             </div>
+            <!-- Game Info (right sidebar) -->
             <div id="sidebar" class="content-container">
                 <div id="info"></div>
                 <div id="next-piece"></div>
