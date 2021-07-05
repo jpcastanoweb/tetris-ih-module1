@@ -1,0 +1,14 @@
+
+html,body {
+    /* background-image: url("../images/tetris-background.jpeg");
+    background-size: cover; */
+    height: 100%;
+    margin: 0;
+}
+
+#background {
+    height: 100%;
+    width: auto;
+    background-image: url("../images/tetris-background.jpeg");
+    background-size: cover;
+}
