@@ -26,6 +26,38 @@ header {
     background-size: cover;
 }
 
+#main-container {
+    display: flex;
+    justify-content: center;
+}
+
+#instructions {
+    width: 250px;
+    /* background-color: red; */
+}
+
+#game-canvas {
+    /* background-color: aqua; */
+}
+
+#sidebar {
+    width: 250px;
+    padding: 10px;
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#info {
+    flex-grow: 1;
+    /* background-color: chartreuse; */
+}
+
+#next-piece {
+    /* background-color: aqua; */
+    height: 35%;
+}
 /* 
     CLASSES
 */
@@ -33,3 +65,12 @@ header {
 .logo {
     width: 200px;
 }
+
+.content-container {
+    margin: 10px;
+    box-shadow: rgb(158, 157, 157) 0px 0px 40px;
+    background-color: rgb(26,26,26);
+    border: 2px solid gray;
+    border-radius: 5px
+}
+
