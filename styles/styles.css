@@ -1,4 +1,8 @@
 
+/* 
+    NATIVE TAGS
+*/
+
 html,body {
     /* background-image: url("../images/tetris-background.jpeg");
     background-size: cover; */
@@ -6,9 +10,18 @@ html,body {
     margin: 0;
 }
 
+/* 
+    IDENTIFIERS
+*/
+
+
 #background {
     height: 100%;
     width: auto;
     background-image: url("../images/tetris-background.jpeg");
     background-size: cover;
 }
+
+/* 
+    CLASSES
+*/
