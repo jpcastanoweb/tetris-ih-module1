@@ -37,7 +37,7 @@ header {
 }
 
 #game-canvas {
-    /* background-color: aqua; */
+    background-color: rgb(26,26,26);
 }
 
 #sidebar {
@@ -68,8 +68,9 @@ header {
 
 .content-container {
     margin: 10px;
+    padding: 10px;
     box-shadow: rgb(158, 157, 157) 0px 0px 40px;
-    background-color: rgb(26,26,26);
+    background-color: rgba(26,26,26, 0.8);
     border: 2px solid gray;
     border-radius: 5px
 }
