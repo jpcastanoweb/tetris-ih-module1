@@ -23,6 +23,11 @@ Your app must:
 
 ## Controls
 
+## Math and Logic
+
+Tetris Pieces:
+https://docs.google.com/presentation/d/1iqHYfA2H7FOcpKK4ISudbYX20J6TYI75oVXYnbyiwl4/edit#slide=id.p
+
 ## Author
 
 Juan Pablo Castaño
