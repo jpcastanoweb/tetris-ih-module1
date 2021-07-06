@@ -1,4 +1,3 @@
-console.log("Loading Piece")
 class Piece {
   // currentOrientation: index of current orientation object
   // centerPiece: indexes of centerPiece in Tetris Matrix
@@ -11,6 +10,8 @@ class Piece {
       y: 5,
     }
     this.orientations = [[]] // to be built in extended classes
+    this.previousIndexes = null
+    this.previousOrientation = null
   }
 
   // returns current orientation of piece
@@ -21,23 +22,45 @@ class Piece {
   getCenterPieceLoc() {
     return this.centerPieceIndexes
   }
+
+  // returns previous center's index to help with deletion of true booleans in matrix
+  getPreviousIndexes() {
+    return this.previousIndexes
+  }
+
+  // returns previous orientation to help with deletion of true booleans in matrix
+  getPreviousOrientation() {
+    return this.orientations[this.previousOrientation]
+  }
   // turn right by adding one to the orientation index,
-  // moding by the amount of orientations available to avoid out of bounds errors in orientations array
-  turn() {
+  // and moding by the amount of orientations available to avoid out of bounds
+  // errors in orientations array
+  //
+  // used Object.assign to copy by value and not by reference
+
+  rotate() {
+    this.previousIndexes = Object.assign({}, this.centerPieceIndexes)
+    this.previousOrientation = this.currentOrientation
     return this.currentOrientation++ % this.orientations.length
   }
 
   moveDown() {
+    this.previousIndexes = Object.assign({}, this.centerPieceIndexes)
+    this.previousOrientation = this.currentOrientation
     this.centerPieceIndexes.x++
     return this.centerPieceIndexes
   }
 
   moveRight() {
+    this.previousIndexes = Object.assign({}, this.centerPieceIndexes)
+    this.previousOrientation = this.currentOrientation
     this.centerPieceIndexes.y++
     return this.centerPieceIndexes
   }
 
   moveLeft() {
+    this.previousIndexes = Object.assign({}, this.centerPieceIndexes)
+    this.previousOrientation = this.currentOrientation
     this.centerPieceIndexes.y--
     return this.centerPieceIndexes
   }

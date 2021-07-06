@@ -1,4 +1,3 @@
-console.log("Loading Canvas")
 class TetrisCanvas {
   constructor() {
     const canvas = document.getElementById("game-canvas")
