@@ -1,3 +1,12 @@
+// Colors:
+// ForwardL: rgb(230,162,57)
+// BackwardL: rgb(10,28,208)
+// Cube: rgb(241,238,79)
+// ForwardS: rgb(110,235,71)
+// BackwardS: rgb(221,47,33)
+// Cross: rgb(145,45,231)
+// Line: rgb(108,237,238)
+
 class Piece {
   // currentOrientation: index of current orientation object
   // centerPiece: indexes of centerPiece in Tetris Matrix
@@ -69,6 +78,7 @@ class Piece {
 class ForwardL extends Piece {
   constructor() {
     super()
+    this.color = "rgb(230,162,57)"
     this.currentOrientation = 1
     this.orientations = [
       [
@@ -98,6 +108,7 @@ class ForwardL extends Piece {
 class BackwardL extends Piece {
   constructor() {
     super()
+    this.color = "rgb(10,28,208)"
     this.currentOrientation = 3
     this.orientations = [
       [
@@ -127,6 +138,7 @@ class BackwardL extends Piece {
 class Cube extends Piece {
   constructor() {
     super()
+    this.color = "rgb(241,238,79)"
     this.orientations = [
       [
         { y: 1, x: 0 },
@@ -140,6 +152,7 @@ class Cube extends Piece {
 class ForwardS extends Piece {
   constructor() {
     super()
+    this.color = "rgb(110,235,71)"
     this.orientations = [
       [
         { y: 1, x: 0 },
@@ -158,6 +171,7 @@ class ForwardS extends Piece {
 class BackwardS extends Piece {
   constructor() {
     super()
+    this.color = "rgb(221,47,33)"
     this.orientations = [
       [
         { y: -1, x: 0 },
@@ -176,6 +190,7 @@ class BackwardS extends Piece {
 class Cross extends Piece {
   constructor() {
     super()
+    this.color = "rgb(145,45,231)"
     this.currentOrientation = 2
     this.orientations = [
       [
@@ -205,6 +220,7 @@ class Cross extends Piece {
 class Line extends Piece {
   constructor() {
     super()
+    this.color = "rgb(108,237,238)"
     this.currentOrientation = 2
     this.orientations = [
       [
