@@ -4,19 +4,33 @@ class Tetris {
     this.lines = 0
     this.score = 0
     this.currentPiece = null
-    this.m = this.buildEmptyArray()
+    this.matrix = this.buildEmptyArray()
   }
 
-  updatePiece() {
-    if (this.currentPiece.previousIndexes) this.cleanPreviousLoc()
+  getMatrix() {
+    return this.matrix
+  }
+
+  updatePiece(callback) {
+    if (this.currentPiece.previousIndexes) {
+      this.cleanPreviousLoc()
+    }
     let newOrientation = this.currentPiece.getOrientation()
     let centerX = this.currentPiece.centerPieceIndexes.x
     let centerY = this.currentPiece.centerPieceIndexes.y
-    this.m[centerX][centerY] = true
+    this.matrix[centerX][centerY] = {
+      value: true,
+      color: this.currentPiece.color,
+    }
 
     for (const sq of newOrientation) {
-      this.m[centerX + sq.x][centerY + sq.y] = true
+      this.matrix[centerX + sq.x][centerY + sq.y] = {
+        value: true,
+        color: this.currentPiece.color,
+      }
     }
+
+    if (callback) callback()
   }
 
   setCurrentPiece(piece) {
@@ -29,7 +43,10 @@ class Tetris {
     for (let i = 0; i < 18; i++) {
       let newArr = []
       for (let j = 0; j < 10; j++) {
-        newArr.push(false)
+        newArr.push({
+          value: false,
+          color: null,
+        })
       }
       newMatrix.push(newArr)
     }
@@ -38,7 +55,7 @@ class Tetris {
   }
 
   printMatrix() {
-    console.table(this.m)
+    console.table(this.matrix)
   }
 
   moveCurrentPieceDown() {
@@ -65,9 +82,15 @@ class Tetris {
     let orientation = this.currentPiece.getPreviousOrientation()
     let indexes = this.currentPiece.getPreviousIndexes()
 
-    this.m[indexes.x][indexes.y] = false
+    this.matrix[indexes.x][indexes.y] = {
+      value: false,
+      color: null,
+    }
     for (const sq of orientation) {
-      this.m[indexes.x + sq.x][indexes.y + sq.y] = false
+      this.matrix[indexes.x + sq.x][indexes.y + sq.y] = {
+        value: false,
+        color: null,
+      }
     }
   }
 }

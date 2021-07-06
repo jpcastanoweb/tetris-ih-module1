@@ -1,4 +1,5 @@
-// Colors:
+// Colors
+// Default: rgb(117, 113, 113);
 // ForwardL: rgb(230,162,57)
 // BackwardL: rgb(10,28,208)
 // Cube: rgb(241,238,79)
@@ -50,7 +51,10 @@ class Piece {
   rotate() {
     this.previousIndexes = Object.assign({}, this.centerPieceIndexes)
     this.previousOrientation = this.currentOrientation
-    return this.currentOrientation++ % this.orientations.length
+    this.currentOrientation =
+      (this.currentOrientation + 1) % this.orientations.length
+
+    return this.currentOrientation
   }
 
   moveDown() {
