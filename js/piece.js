@@ -1,3 +1,4 @@
+console.log("Loading Piece")
 class Piece {
   // currentOrientation: index of current orientation object
   // centerPiece: indexes of centerPiece in Tetris Matrix
@@ -7,7 +8,7 @@ class Piece {
     this.currentOrientation = 0
     this.centerPieceIndexes = {
       x: 0,
-      y: 3,
+      y: 5,
     }
     this.orientations = [[]] // to be built in extended classes
   }
@@ -27,17 +28,17 @@ class Piece {
   }
 
   moveDown() {
-    this.centerPieceIndexes.y++
-    return this.centerPieceIndexes
-  }
-
-  moveRight() {
     this.centerPieceIndexes.x++
     return this.centerPieceIndexes
   }
 
+  moveRight() {
+    this.centerPieceIndexes.y++
+    return this.centerPieceIndexes
+  }
+
   moveLeft() {
-    this.centerPieceIndexes.x--
+    this.centerPieceIndexes.y--
     return this.centerPieceIndexes
   }
 }
@@ -45,27 +46,27 @@ class Piece {
 class ForwardL extends Piece {
   constructor() {
     super()
-    console.log("Building ForwardL piece")
+    this.currentOrientation = 1
     this.orientations = [
       [
-        { x: 0, y: -1 },
-        { x: 0, y: 1 },
-        { x: 1, y: 1 },
+        { y: 0, x: -1 },
+        { y: 0, x: 1 },
+        { y: 1, x: 1 },
       ],
       [
-        { x: 1, y: 0 },
-        { x: -1, y: 0 },
-        { x: -1, y: 1 },
+        { y: 1, x: 0 },
+        { y: -1, x: 0 },
+        { y: -1, x: 1 },
       ],
       [
-        { x: 0, y: 1 },
-        { x: 0, y: -1 },
-        { x: -1, y: -1 },
+        { y: 0, x: 1 },
+        { y: 0, x: -1 },
+        { y: -1, x: -1 },
       ],
       [
-        { x: -1, y: 0 },
-        { x: 1, y: 0 },
-        { x: 1, y: -1 },
+        { y: -1, x: 0 },
+        { y: 1, x: 0 },
+        { y: 1, x: -1 },
       ],
     ]
   }
@@ -74,26 +75,27 @@ class ForwardL extends Piece {
 class BackwardL extends Piece {
   constructor() {
     super()
+    this.currentOrientation = 3
     this.orientations = [
       [
-        { x: 0, y: -1 },
-        { x: 0, y: 1 },
-        { x: -1, y: 1 },
+        { y: 0, x: -1 },
+        { y: 0, x: 1 },
+        { y: -1, x: 1 },
       ],
       [
-        { x: 1, y: 0 },
-        { x: -1, y: 0 },
-        { x: -1, y: -1 },
+        { y: 1, x: 0 },
+        { y: -1, x: 0 },
+        { y: -1, x: -1 },
       ],
       [
-        { x: 0, y: 1 },
-        { x: 0, y: -1 },
-        { x: 1, y: -1 },
+        { y: 0, x: 1 },
+        { y: 0, x: -1 },
+        { y: 1, x: -1 },
       ],
       [
-        { x: -1, y: 0 },
-        { x: 1, y: 0 },
-        { x: 1, y: 1 },
+        { y: -1, x: 0 },
+        { y: 1, x: 0 },
+        { y: 1, x: 1 },
       ],
     ]
   }
@@ -104,9 +106,9 @@ class Cube extends Piece {
     super()
     this.orientations = [
       [
-        { x: 1, y: 0 },
-        { x: 0, y: 1 },
-        { x: 1, y: 1 },
+        { y: 1, x: 0 },
+        { y: 0, x: 1 },
+        { y: 1, x: 1 },
       ],
     ]
   }
@@ -117,14 +119,14 @@ class ForwardS extends Piece {
     super()
     this.orientations = [
       [
-        { x: 1, y: 0 },
-        { x: -1, y: 1 },
-        { x: 0, y: 1 },
+        { y: 1, x: 0 },
+        { y: -1, x: 1 },
+        { y: 0, x: 1 },
       ],
       [
-        { x: 0, y: 1 },
-        { x: -1, y: -1 },
-        { x: -1, y: 0 },
+        { y: 0, x: 1 },
+        { y: -1, x: -1 },
+        { y: -1, x: 0 },
       ],
     ]
   }
@@ -135,14 +137,14 @@ class BackwardS extends Piece {
     super()
     this.orientations = [
       [
-        { x: -1, y: 0 },
-        { x: 1, y: 1 },
-        { x: 0, y: 1 },
+        { y: -1, x: 0 },
+        { y: 1, x: 1 },
+        { y: 0, x: 1 },
       ],
       [
-        { x: 0, y: -1 },
-        { x: -1, y: 1 },
-        { x: -1, y: 0 },
+        { y: 0, x: -1 },
+        { y: -1, x: 1 },
+        { y: -1, x: 0 },
       ],
     ]
   }
@@ -151,26 +153,27 @@ class BackwardS extends Piece {
 class Cross extends Piece {
   constructor() {
     super()
+    this.currentOrientation = 2
     this.orientations = [
       [
-        { x: 0, y: -1 },
-        { x: 1, y: 0 },
-        { x: -1, y: 0 },
+        { y: 0, x: -1 },
+        { y: 1, x: 0 },
+        { y: -1, x: 0 },
       ],
       [
-        { x: 1, y: 0 },
-        { x: 0, y: 1 },
-        { x: 0, y: -1 },
+        { y: 1, x: 0 },
+        { y: 0, x: 1 },
+        { y: 0, x: -1 },
       ],
       [
-        { x: 0, y: 1 },
-        { x: -1, y: 0 },
-        { x: 1, y: 0 },
+        { y: 0, x: 1 },
+        { y: -1, x: 0 },
+        { y: 1, x: 0 },
       ],
       [
-        { x: -1, y: 0 },
-        { x: 0, y: -1 },
-        { x: 0, y: 1 },
+        { y: -1, x: 0 },
+        { y: 0, x: -1 },
+        { y: 0, x: 1 },
       ],
     ]
   }
@@ -179,26 +182,27 @@ class Cross extends Piece {
 class Line extends Piece {
   constructor() {
     super()
+    this.currentOrientation = 2
     this.orientations = [
       [
-        { x: -1, y: 0 },
-        { x: 1, y: 0 },
-        { x: 2, y: 0 },
+        { y: -1, x: 0 },
+        { y: 1, x: 0 },
+        { y: 2, x: 0 },
       ],
       [
-        { x: 0, y: -1 },
-        { x: 0, y: 1 },
-        { x: 0, y: 2 },
+        { y: 0, x: -1 },
+        { y: 0, x: 1 },
+        { y: 0, x: 2 },
       ],
       [
-        { x: 1, y: 0 },
-        { x: -1, y: 0 },
-        { x: -2, y: 0 },
+        { y: 1, x: 0 },
+        { y: -1, x: 0 },
+        { y: -2, x: 0 },
       ],
       [
-        { x: 0, y: 1 },
-        { x: 0, y: -1 },
-        { x: 0, y: -2 },
+        { y: 0, x: 1 },
+        { y: 0, x: -1 },
+        { y: 0, x: -2 },
       ],
     ]
   }

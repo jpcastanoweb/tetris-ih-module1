@@ -1,74 +1,38 @@
+console.log("Loading Tetris")
 class Tetris {
   constructor() {
     this.timer = 0
     this.lines = 0
     this.score = 0
-    this.m = [[]]
+    this.m = this.buildEmptyArray()
   }
-}
 
-class Piece {
-  constructor(type) {
-    this.centerPiece = {
-      x: 0,
-      y: 3,
+  placePiece(piece) {
+    let newOrientation = piece.getOrientation()
+    let centerX = piece.centerPieceIndexes.x
+    let centerY = piece.centerPieceIndexes.y
+    this.m[centerX][centerY] = true
+
+    for (const sq of newOrientation) {
+      this.m[centerX + sq.x][centerY + sq.y] = true
+    }
+  }
+
+  buildEmptyArray() {
+    let newMatrix = []
+
+    for (let i = 0; i < 18; i++) {
+      let newArr = []
+      for (let j = 0; j < 10; j++) {
+        newArr.push(false)
+      }
+      newMatrix.push(newArr)
     }
 
-    /* 
-        a: Forward L
-        b: Backward L
-        c: T
-        d: Forward S
-        e: Backward S
-        f: Cube
-        g: Long L
-    */
+    return newMatrix
+  }
 
-    switch (type) {
-      case "a":
-        this.second = {
-          x: 0,
-          y: 2,
-        }
-        this.third = {
-          x: 1,
-          y: 2,
-        }
-        this.fourth = {
-          x: 0,
-          y: 4,
-        }
-      case "b":
-        this.second = {
-          x: 0,
-          y: 1,
-        }
-        this.third = {
-          x: 0,
-          y: 4,
-        }
-        this.fourth = {
-          x: 1,
-          y: 4,
-        }
-      case "c":
-        this.second = {
-          x: 0,
-          y: 2,
-        }
-        this.third = {
-          x: 0,
-          y: 4,
-        }
-        this.fourth = {
-          x: 1,
-          y: 3,
-        }
-
-      case "d":
-      case "e":
-      case "f":
-      case "g":
-    }
+  printMatrix() {
+    console.table(this.m)
   }
 }
