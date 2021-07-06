@@ -19,7 +19,10 @@ class Canvas {
           y = i * 35
 
           this.ctx.fillStyle = matrix[i][j].color
+          this.ctx.strokeStyle = "black"
+          this.ctx.lineWidth = 3
           this.ctx.fillRect(x, y, 35, 35)
+          this.ctx.strokeRect(x, y, 35, 35)
         }
       }
     }
