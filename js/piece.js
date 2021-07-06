@@ -16,7 +16,7 @@ class Piece {
   constructor() {
     this.currentOrientation = 0
     this.centerPieceIndexes = {
-      x: 0,
+      x: 1,
       y: 5,
     }
     this.orientations = [[]] // to be built in extended classes
@@ -76,6 +76,45 @@ class Piece {
     this.previousOrientation = this.currentOrientation
     this.centerPieceIndexes.y--
     return this.centerPieceIndexes
+  }
+
+  getRightMost() {
+    let maxRight = this.centerPieceIndexes.y
+
+    for (const sq of this.getOrientation()) {
+      maxRight =
+        maxRight > this.centerPieceIndexes.y + sq.y
+          ? maxRight
+          : this.centerPieceIndexes.y + sq.y
+    }
+
+    return maxRight
+  }
+
+  getLeftMost() {
+    let minLeft = this.centerPieceIndexes.y
+
+    for (const sq of this.getOrientation()) {
+      minLeft =
+        minLeft < this.centerPieceIndexes.y + sq.y
+          ? minLeft
+          : this.centerPieceIndexes.y + sq.y
+    }
+
+    return minLeft
+  }
+
+  getTopMost() {
+    let minTop = this.centerPieceIndexes.x
+    console.log("minTop", minTop)
+    for (const sq of this.getOrientation()) {
+      minTop =
+        minTop < this.centerPieceIndexes.x + sq.x
+          ? minTop
+          : this.centerPieceIndexes.x + sq.x
+    }
+    console.log("minTop", minTop)
+    return minTop
   }
 }
 

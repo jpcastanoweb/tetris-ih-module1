@@ -40,7 +40,8 @@ class Tetris {
   buildEmptyArray() {
     let newMatrix = []
 
-    for (let i = 0; i < 18; i++) {
+    //There are 18 rows, but we add an extra one on top to avoid crashes
+    for (let i = 0; i < 19; i++) {
       let newArr = []
       for (let j = 0; j < 10; j++) {
         newArr.push({
@@ -64,17 +65,35 @@ class Tetris {
   }
 
   moveCurrentPieceRight() {
-    this.currentPiece.moveRight()
-    this.updatePiece()
+    const rightMostPieceI = this.currentPiece.getRightMost()
+    // Checking if we can move right
+    if (rightMostPieceI < 9) {
+      this.currentPiece.moveRight()
+      this.updatePiece()
+    }
   }
 
   moveCurrentPieceLeft() {
-    this.currentPiece.moveLeft()
-    this.updatePiece()
+    const leftMostPieceI = this.currentPiece.getLeftMost()
+    // Checking if we can move left
+    if (leftMostPieceI > 0) {
+      this.currentPiece.moveLeft()
+      this.updatePiece()
+    }
   }
 
   rotateCurrentPiece() {
     this.currentPiece.rotate()
+    const leftMostPieceI = this.currentPiece.getLeftMost()
+    const rightMostPieceI = this.currentPiece.getRightMost()
+    const topMostPieceI = this.currentPiece.getTopMost()
+
+    this.updatePiece()
+
+    if (leftMostPieceI < 0) this.moveCurrentPieceRight()
+    else if (rightMostPieceI > 9) this.moveCurrentPieceLeft()
+    else if (topMostPieceI == 0) this.moveCurrentPieceDown()
+
     this.updatePiece()
   }
 
