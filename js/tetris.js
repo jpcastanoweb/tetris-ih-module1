@@ -179,6 +179,16 @@ class Tetris {
     //clear
     this.clearLines(fullLines)
 
+    //shift lines
+    for (let i = fullLines.length - 1; i >= 0; i--) {
+      // if (i === fullLines.length - 1) this.shiftDown(fullLines[i], 1)
+      // else this.shiftDown(fullLines[i], 1)
+      this.shiftDown(fullLines[i], 1)
+    }
+
+    //Adding points to lines
+    this.addPoints(fullLines.length)
+
     // Generating new piece and placing it again
     const newPiece = this.generateNewPiece()
     this.currentPiece = newPiece
@@ -237,6 +247,25 @@ class Tetris {
     }
 
     this.printMatrix
+  }
+
+  shiftDown(beginning, end) {
+    let copyTo = beginning
+    let copyFrom = beginning - 1
+
+    for (; copyFrom >= end; ) {
+      let copy = []
+      for (let piece of this.matrix[copyFrom]) {
+        copy.push(Object.assign({}, piece))
+      }
+      this.matrix[copyTo] = copy
+      copyFrom--
+      copyTo--
+    }
+  }
+
+  addPoints(lines) {
+    this.lines += lines
   }
 
   wonGame() {}
