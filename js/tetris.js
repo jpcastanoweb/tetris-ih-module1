@@ -88,13 +88,11 @@ class Tetris {
     for (const piece of piecesWithIndexes) {
       // checking if there's a floor under
       if (piece.x == this.matrix.length - 1) {
-        console.log("Triggered here")
         this.triggerCollisionBelow()
         return
       }
 
       if (this.matrix[piece.x + 1][piece.y].value) {
-        console.log("Triggered here")
         this.triggerCollisionBelow()
         return
       }
@@ -177,7 +175,9 @@ class Tetris {
   triggerCollisionBelow() {
     //check full lines
     const fullLines = this.checkFullLines()
-    console.log("Checked full lines: ", fullLines)
+
+    //clear
+    this.clearLines(fullLines)
 
     // Generating new piece and placing it again
     const newPiece = this.generateNewPiece()
@@ -186,7 +186,6 @@ class Tetris {
   }
 
   generateNewPiece() {
-    console.log(this.matrix)
     let random = Math.floor(Math.random() * 7)
     let newP = null
     switch (random) {
@@ -227,6 +226,17 @@ class Tetris {
     }
 
     return fullLines
+  }
+
+  clearLines(indexes) {
+    for (let i of indexes) {
+      for (let piece of this.matrix[i]) {
+        piece.color = null
+        piece.value = false
+      }
+    }
+
+    this.printMatrix
   }
 
   wonGame() {}
