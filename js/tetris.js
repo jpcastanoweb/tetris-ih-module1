@@ -60,8 +60,15 @@ class Tetris {
   }
 
   moveCurrentPieceDown() {
-    this.currentPiece.moveDown()
-    this.updatePiece()
+    let maxUnderIndexes = this.currentPiece.getUnderMostIndeces()
+    if (maxUnderIndexes.x == 18) {
+      this.triggerCollisionBelow()
+    } else if (this.matrix[maxUnderIndexes.x + 1][maxUnderIndexes.y].value) {
+      this.triggerCollisionBelow()
+    } else {
+      this.currentPiece.moveDown()
+      this.updatePiece()
+    }
   }
 
   moveCurrentPieceRight() {
@@ -112,4 +119,17 @@ class Tetris {
       }
     }
   }
+
+  triggerCollisionBelow() {
+    // const newPiece = this.generateNewPiece()
+    // this.currentPiece = newPiece
+    // this.updatePiece()
+    console.log("collision")
+  }
+
+  generateNewPiece() {}
+
+  wonGame() {}
+
+  lostGame() {}
 }

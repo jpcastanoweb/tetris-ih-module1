@@ -106,15 +106,29 @@ class Piece {
 
   getTopMost() {
     let minTop = this.centerPieceIndexes.x
-    console.log("minTop", minTop)
     for (const sq of this.getOrientation()) {
       minTop =
         minTop < this.centerPieceIndexes.x + sq.x
           ? minTop
           : this.centerPieceIndexes.x + sq.x
     }
-    console.log("minTop", minTop)
     return minTop
+  }
+  // Returns both indeces since all columns are different
+  getUnderMostIndeces() {
+    let maxUnder = Object.assign({}, this.centerPieceIndexes)
+    for (const sq of this.getOrientation()) {
+      console.log(
+        `x: ${this.centerPieceIndexes.x + sq.x}, y:${
+          this.centerPieceIndexes.y + sq.y
+        }`
+      )
+      if (maxUnder.x < this.centerPieceIndexes.x + sq.x) {
+        maxUnder.x = this.centerPieceIndexes.x + sq.x
+        maxUnder.y = this.centerPieceIndexes.y + sq.y
+      }
+    }
+    return maxUnder
   }
 }
 

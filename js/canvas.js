@@ -7,8 +7,6 @@ class Canvas {
   paint(matrix) {
     this.ctx.clearRect(0, 0, 350, 630)
 
-    console.log(matrix)
-
     let x = 0
     let y = 0
 

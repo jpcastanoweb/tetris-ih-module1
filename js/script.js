@@ -9,7 +9,7 @@ const p5 = new BackwardS()
 const p6 = new Cross()
 const p7 = new Line()
 
-game.setCurrentPiece(piece1)
+game.setCurrentPiece(p7)
 game.updatePiece()
 tetrisCanvas.paint(game.getMatrix())
 
