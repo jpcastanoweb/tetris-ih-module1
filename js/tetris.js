@@ -141,13 +141,41 @@ class Tetris {
   }
 
   triggerCollisionBelow() {
-    // const newPiece = this.generateNewPiece()
-    // this.currentPiece = newPiece
-    // this.updatePiece()
     console.log("collision")
+    const newPiece = this.generateNewPiece()
+    this.currentPiece = newPiece
+    this.updatePiece()
   }
 
-  generateNewPiece() {}
+  generateNewPiece() {
+    console.log(this.matrix)
+    let random = Math.floor(Math.random() * 7)
+    let newP = null
+    switch (random) {
+      case 0:
+        newP = new ForwardL()
+        break
+      case 1:
+        newP = new BackwardL()
+        break
+      case 2:
+        newP = new Cube()
+        break
+      case 3:
+        newP = new Cross()
+        break
+      case 4:
+        newP = new ForwardS()
+        break
+      case 5:
+        newP = new BackwardS()
+        break
+      case 6:
+        newP = new Line()
+        break
+    }
+    return newP
+  }
 
   wonGame() {}
 
