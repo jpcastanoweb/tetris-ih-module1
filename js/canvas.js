@@ -14,7 +14,7 @@ class Canvas {
       for (let j = 0; j < matrix[0].length; j++) {
         if (matrix[i][j].value) {
           x = j * 35
-          y = (i - 1) * 35 // -1 because there is an extra row on top, used to avoid crashes when rotations at the top
+          y = (i - 2) * 35 // -1 because there is an extra row on top, used to avoid crashes when rotations at the top
 
           this.ctx.fillStyle = matrix[i][j].color
           this.ctx.strokeStyle = "black"

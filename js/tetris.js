@@ -40,8 +40,8 @@ class Tetris {
   buildEmptyArray() {
     let newMatrix = []
 
-    //There are 18 rows, but we add an extra one on top to avoid crashes
-    for (let i = 0; i < 19; i++) {
+    //There are 18 rows, but we add two extra one on top to avoid crashes
+    for (let i = 0; i < 20; i++) {
       let newArr = []
       for (let j = 0; j < 10; j++) {
         newArr.push({
@@ -61,7 +61,7 @@ class Tetris {
 
   moveCurrentPieceDown() {
     let maxUnderIndexes = this.currentPiece.getUnderMostIndeces()
-    if (maxUnderIndexes.x == 18) {
+    if (maxUnderIndexes.x == this.matrix.length - 1) {
       this.triggerCollisionBelow()
     } else if (this.matrix[maxUnderIndexes.x + 1][maxUnderIndexes.y].value) {
       this.triggerCollisionBelow()
@@ -91,17 +91,37 @@ class Tetris {
 
   rotateCurrentPiece() {
     this.currentPiece.rotate()
+    this.updatePiece()
+
+    let collisions = "checking"
+
+    while (collisions !== "none") {
+      collisions = this._helperCheckAnyCollision()
+      console.log(collisions)
+      switch (collisions) {
+        case "left":
+          this.moveCurrentPieceRight()
+          break
+        case "right":
+          this.moveCurrentPieceLeft()
+          break
+        case "top":
+          this.moveCurrentPieceDown()
+          break
+      }
+    }
+  }
+
+  _helperCheckAnyCollision() {
     const leftMostPieceI = this.currentPiece.getLeftMost()
     const rightMostPieceI = this.currentPiece.getRightMost()
     const topMostPieceI = this.currentPiece.getTopMost()
 
-    this.updatePiece()
+    if (leftMostPieceI < 0) return "left"
+    else if (rightMostPieceI > 9) return "right"
+    else if (topMostPieceI < 2) return "top"
 
-    if (leftMostPieceI < 0) this.moveCurrentPieceRight()
-    else if (rightMostPieceI > 9) this.moveCurrentPieceLeft()
-    else if (topMostPieceI == 0) this.moveCurrentPieceDown()
-
-    this.updatePiece()
+    return "none"
   }
 
   cleanPreviousLoc() {

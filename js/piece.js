@@ -16,7 +16,7 @@ class Piece {
   constructor() {
     this.currentOrientation = 0
     this.centerPieceIndexes = {
-      x: 1,
+      x: 2,
       y: 5,
     }
     this.orientations = [[]] // to be built in extended classes
@@ -118,11 +118,6 @@ class Piece {
   getUnderMostIndeces() {
     let maxUnder = Object.assign({}, this.centerPieceIndexes)
     for (const sq of this.getOrientation()) {
-      console.log(
-        `x: ${this.centerPieceIndexes.x + sq.x}, y:${
-          this.centerPieceIndexes.y + sq.y
-        }`
-      )
       if (maxUnder.x < this.centerPieceIndexes.x + sq.x) {
         maxUnder.x = this.centerPieceIndexes.x + sq.x
         maxUnder.y = this.centerPieceIndexes.y + sq.y
