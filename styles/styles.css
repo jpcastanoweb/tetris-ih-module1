@@ -1,3 +1,9 @@
+/* 
+    Text Color: rgb(82,120,186)
+
+
+*/
+
 
 /* 
     NATIVE TAGS
@@ -6,6 +12,9 @@
 html,body {
     height: 100%;
     margin: 0;
+    font-family: 'Overpass Mono', monospace;
+    color: rgb(82,120,186);
+    font-size: 18px;
 }
 
 header {
@@ -32,7 +41,7 @@ header {
 }
 
 #instructions {
-    width: 250px;
+    width: 275px;
     /* background-color: red; */
 }
 
@@ -41,9 +50,8 @@ header {
     border-radius: 5px;
 }
 
-#sidebar {
-    width: 250px;
-    padding: 10px;
+#score-box {
+    width: 275px;
     /* background-color: blueviolet; */
     display: flex;
     flex-direction: column;
@@ -59,6 +67,11 @@ header {
     /* background-color: aqua; */
     height: 35%;
 }
+
+#game {
+    padding: 10px;
+}
+
 /* 
     CLASSES
 */
@@ -69,10 +82,19 @@ header {
 
 .content-container {
     margin: 10px;
-    padding: 10px;
+    /* padding: 10px; */
     box-shadow: rgb(158, 157, 157) 0px 0px 40px;
     background-color: rgba(26,26,26, 0.8);
     border: 2px solid gray;
     border-radius: 5px
 }
 
+.key-img {
+    width: 60px;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}

@@ -7,6 +7,9 @@
     <title>Tetris</title>
     <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="./styles/styles.css">
 </head>
@@ -22,13 +25,36 @@
         <!-- Main contrainer: holds instructions, game and info sidebar -->
         <div id="main-container">
             <!-- Game instructions (left sidebar) -->
-            <div id="instructions" class="content-container"></div>
+            <div id="instructions" class="content-container sidebar">
+                <h1>Instructions</h1>
+                <div class="instruction-block">
+                    <h2>Goal</h4>
+                    <div class="instructions-content-block">
+                        <p>To win, clear 20 lines. Do not reach the top, because you will lose.</p>
+                    </div>
+                </div>
+                <div class="instruction-block">
+                    <h2>Rotate Piece</h4>
+                    <div class="instructions-content-block">
+                        <img class="key-img" src="./images/arrow-up-icon.png" alt="arrow up">
+                    </div>
+                </div>
+                <div class="instruction-block">
+                    <h2>Move Piece</h4>
+                    <div class="instructions-content-block">
+                        <img class="key-img" src="./images/arrow-left-icon.png" alt="arrow left">
+                        <img class="key-img" src="./images/arrow-down-icon.png" alt="arrow down">
+                        <img class="key-img" src="./images/arrow-right-icon.png" alt="arrow right">
+                    </div>
+                </div>
+                
+            </div>
             <!-- Game -->
-            <div id="game" class="content-container">
+            <div id="game" class="content-container ">
                 <canvas id="game-canvas" width="350" height="630"></canvas>
             </div>
             <!-- Game Info (right sidebar) -->
-            <div id="sidebar" class="content-container">
+            <div id="score-box" class="content-container sidebar">
                 <div id="info">
                     <button id="start-btn">Start</button>
                     <button id="pause-btn">Pause</button>
