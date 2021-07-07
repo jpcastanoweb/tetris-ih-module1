@@ -16,8 +16,8 @@ class Tetris {
       this.cleanPreviousLoc()
     }
     let newOrientation = this.currentPiece.getOrientation()
-    let centerX = this.currentPiece.centerPieceIndexes.x
-    let centerY = this.currentPiece.centerPieceIndexes.y
+    let centerX = this.currentPiece.getCenterPieceLoc().x
+    let centerY = this.currentPiece.getCenterPieceLoc().y
     this.matrix[centerX][centerY] = {
       value: true,
       color: this.currentPiece.color,
@@ -56,19 +56,58 @@ class Tetris {
   }
 
   printMatrix() {
-    console.table(this.matrix)
+    const vals = []
+
+    for (let i = 2; i < 20; i++) {
+      let newArr = []
+      for (let j = 0; j < 10; j++) {
+        newArr.push(this.matrix[i][j].value)
+      }
+      vals.push(newArr)
+    }
+
+    console.table(vals)
   }
 
   moveCurrentPieceDown() {
-    let maxUnderIndexes = this.currentPiece.getUnderMostIndeces()
-    if (maxUnderIndexes.x == this.matrix.length - 1) {
-      this.triggerCollisionBelow()
-    } else if (this.matrix[maxUnderIndexes.x + 1][maxUnderIndexes.y].value) {
-      this.triggerCollisionBelow()
-    } else {
-      this.currentPiece.moveDown()
-      this.updatePiece()
+    const centerX = this.currentPiece.getCenterPieceLoc().x
+    const centerY = this.currentPiece.getCenterPieceLoc().y
+
+    const bottomPieces = this.currentPiece.getBottomPieces()
+
+    //copying object
+    const piecesWithIndexes = []
+    console.log("Bottom pieces: ", bottomPieces)
+    for (let piece of bottomPieces) {
+      piecesWithIndexes.push(Object.assign({}, piece))
     }
+
+    //changing relative indexes to actual indexes
+    for (let piece of piecesWithIndexes) {
+      piece.x += centerX
+      piece.y += centerY
+    }
+    console.log("piecesWithIndexes", piecesWithIndexes)
+
+    for (const piece of piecesWithIndexes) {
+      // checking if there's a floor under
+      if (piece.x == this.matrix.length - 1) {
+        console.log("Triggered here")
+        this.triggerCollisionBelow()
+        return
+      }
+
+      if (this.matrix[piece.x + 1][piece.y].value) {
+        console.log("Triggered here")
+        this.triggerCollisionBelow()
+        return
+      }
+    }
+
+    this.currentPiece.moveDown()
+    this.updatePiece()
+
+    this.printMatrix()
   }
 
   moveCurrentPieceRight() {
@@ -97,7 +136,6 @@ class Tetris {
 
     while (collisions !== "none") {
       collisions = this._helperCheckAnyCollision()
-      console.log(collisions)
       switch (collisions) {
         case "left":
           this.moveCurrentPieceRight()

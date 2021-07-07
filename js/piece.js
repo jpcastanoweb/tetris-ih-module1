@@ -42,6 +42,12 @@ class Piece {
   getPreviousOrientation() {
     return this.orientations[this.previousOrientation]
   }
+
+  // get Bottom Pieces
+  getBottomPieces() {
+    return this.bottomPieces[this.currentOrientation]
+  }
+
   // turn right by adding one to the orientation index,
   // and moding by the amount of orientations available to avoid out of bounds
   // errors in orientations array
@@ -154,6 +160,26 @@ class ForwardL extends Piece {
         { y: 1, x: -1 },
       ],
     ]
+    this.bottomPieces = [
+      [
+        { y: 0, x: 1 },
+        { y: 1, x: 1 },
+      ],
+      [
+        { y: 0, x: 0 },
+        { y: 1, x: 0 },
+        { y: -1, x: 1 },
+      ],
+      [
+        { y: 0, x: 1 },
+        { y: -1, x: -1 },
+      ],
+      [
+        { y: 0, x: 0 },
+        { y: -1, x: 0 },
+        { y: 1, x: 0 },
+      ],
+    ]
   }
 }
 
@@ -184,6 +210,26 @@ class BackwardL extends Piece {
         { y: 1, x: 1 },
       ],
     ]
+    this.bottomPieces = [
+      [
+        { y: 0, x: 1 },
+        { y: -1, x: 1 },
+      ],
+      [
+        { y: 0, x: 0 },
+        { y: 1, x: 0 },
+        { y: -1, x: 0 },
+      ],
+      [
+        { y: 0, x: 1 },
+        { y: 1, x: -1 },
+      ],
+      [
+        { y: 0, x: 0 },
+        { y: -1, x: 0 },
+        { y: 1, x: 1 },
+      ],
+    ]
   }
 }
 
@@ -194,6 +240,12 @@ class Cube extends Piece {
     this.orientations = [
       [
         { y: 1, x: 0 },
+        { y: 0, x: 1 },
+        { y: 1, x: 1 },
+      ],
+    ]
+    this.bottomPieces = [
+      [
         { y: 0, x: 1 },
         { y: 1, x: 1 },
       ],
@@ -216,6 +268,36 @@ class ForwardS extends Piece {
         { y: -1, x: -1 },
         { y: -1, x: 0 },
       ],
+      [
+        { y: -1, x: 0 },
+        { y: 1, x: -1 },
+        { y: 0, x: -1 },
+      ],
+      [
+        { y: 0, x: -1 },
+        { y: 1, x: 1 },
+        { y: 1, x: 0 },
+      ],
+    ]
+    this.bottomPieces = [
+      [
+        { y: 1, x: 0 },
+        { y: -1, x: 1 },
+        { y: 0, x: 1 },
+      ],
+      [
+        { y: 0, x: 1 },
+        { y: -1, x: 0 },
+      ],
+      [
+        { y: 0, x: 0 },
+        { y: -1, x: 1 },
+        { y: 1, x: -1 },
+      ],
+      [
+        { y: 0, x: 0 },
+        { y: 1, x: 1 },
+      ],
     ]
   }
 }
@@ -234,6 +316,36 @@ class BackwardS extends Piece {
         { y: 0, x: -1 },
         { y: -1, x: 1 },
         { y: -1, x: 0 },
+      ],
+      [
+        { y: 1, x: 0 },
+        { y: -1, x: -1 },
+        { y: 0, x: -1 },
+      ],
+      [
+        { y: 0, x: -1 },
+        { y: 1, x: 1 },
+        { y: 1, x: 0 },
+      ],
+    ]
+    this.bottomPieces = [
+      [
+        { y: -1, x: 0 },
+        { y: 1, x: 1 },
+        { y: 0, x: 1 },
+      ],
+      [
+        { y: 0, x: 0 },
+        { y: -1, x: 1 },
+      ],
+      [
+        { y: 0, x: 0 },
+        { y: 1, x: 0 },
+        { y: 1, x: -1 },
+      ],
+      [
+        { y: 0, x: -1 },
+        { y: 1, x: 0 },
       ],
     ]
   }
@@ -266,6 +378,26 @@ class Cross extends Piece {
         { y: 0, x: 1 },
       ],
     ]
+    this.bottomPieces = [
+      [
+        { y: 0, x: 0 },
+        { y: 1, x: 0 },
+        { y: -1, x: 0 },
+      ],
+      [
+        { y: 1, x: 0 },
+        { y: 0, x: 1 },
+      ],
+      [
+        { y: 0, x: 1 },
+        { y: -1, x: 0 },
+        { y: 1, x: 0 },
+      ],
+      [
+        { y: -1, x: 0 },
+        { y: 0, x: 1 },
+      ],
+    ]
   }
 }
 
@@ -295,6 +427,22 @@ class Line extends Piece {
         { y: 0, x: -1 },
         { y: 0, x: -2 },
       ],
+    ]
+    this.bottomPieces = [
+      [
+        { y: 0, x: 0 },
+        { y: -1, x: 0 },
+        { y: 1, x: 0 },
+        { y: 2, x: 0 },
+      ],
+      [{ y: 0, x: 2 }],
+      [
+        { y: 0, x: 0 },
+        { y: 1, x: 0 },
+        { y: -1, x: 0 },
+        { y: -2, x: 0 },
+      ],
+      [{ y: 0, x: 1 }],
     ]
   }
 }
