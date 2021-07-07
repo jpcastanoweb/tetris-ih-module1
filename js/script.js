@@ -50,6 +50,7 @@ startBtn.addEventListener("click", () => {
     game.moveCurrentPieceDown()
   }, 500)
 
+  continueBtn.style.display = "none"
   pauseBtn.style.display = ""
 })
 
