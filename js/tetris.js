@@ -3,9 +3,11 @@ class Tetris {
     this.timer = 0
     this.lines = 0
     this.score = 0
+    this.lineGoal = 10
     this.currentPiece = null
     this.matrix = null
     this.gameInterval = null
+    this.gameOn = false
   }
 
   getMatrix() {
@@ -18,20 +20,23 @@ class Tetris {
     this.score = 0
     this.currentPiece = this.generateNewPiece()
     this.matrix = this.buildEmptyArray()
+    this.hasWonOrLost = false
     if (this.gameInterval) clearInterval(this.gameInterval)
     this.gameInterval = setInterval(() => {
-      this.timer += 1
+      this.timer += 0.5
+      this.moveCurrentPieceDown()
     }, 1000)
   }
 
-  pause() {
+  stop() {
     clearInterval(this.gameInterval)
   }
 
   continue() {
     this.gameInterval = setInterval(() => {
-      this.timer + 1
-    }, 1)
+      this.timer + 0.5
+      this.moveCurrentPieceDown()
+    }, 500)
   }
 
   updatePiece(callback) {
@@ -210,10 +215,20 @@ class Tetris {
     //Adding points to lines
     this.addPoints(fullLines.length)
 
-    // Generating new piece and placing it again
-    const newPiece = this.generateNewPiece()
-    this.currentPiece = newPiece
-    this.updatePiece()
+    // Check if game is won
+    // else Check if game is lost
+    // else Generate new piece and placing it again
+    if (this.lineGoal <= this.lines) {
+      this.stop()
+      this.wonGame()
+    } else if (this.isGameLost()) {
+      this.stop()
+      this.lostGame()
+    } else {
+      const newPiece = this.generateNewPiece()
+      this.currentPiece = newPiece
+      this.updatePiece()
+    }
   }
 
   generateNewPiece() {
@@ -289,7 +304,21 @@ class Tetris {
     this.lines += lines
   }
 
-  wonGame() {}
+  isGameLost() {
+    for (const piece of this.matrix[2]) {
+      if (piece.value) return true
+    }
 
-  lostGame() {}
+    return false
+  }
+
+  wonGame() {
+    this.hasWonOrLost = true
+    console.log("WON GAME")
+  }
+
+  lostGame() {
+    this.hasWonOrLost = true
+    console.log("LOST GAME")
+  }
 }

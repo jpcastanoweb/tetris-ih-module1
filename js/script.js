@@ -6,7 +6,6 @@ pauseBtn.style.display = "none"
 const continueBtn = document.getElementById("continue-btn")
 continueBtn.style.display = "none"
 let painterInterval = null
-let moveDownInterval = null
 
 /* 
   EVENTS
@@ -37,27 +36,21 @@ document.addEventListener("keydown", (e) => {
 
 startBtn.addEventListener("click", () => {
   if (painterInterval) clearInterval(painterInterval)
-  if (moveDownInterval) clearInterval(moveDownInterval)
 
   game.start()
 
   painterInterval = setInterval(() => {
+    if (game.hasWonOrLost) clearInterval(painterInterval)
     tetrisCanvas.paint(game.getMatrix())
-    console.log("Painting")
   }, 100)
-
-  moveDownInterval = setInterval(() => {
-    game.moveCurrentPieceDown()
-  }, 500)
 
   continueBtn.style.display = "none"
   pauseBtn.style.display = ""
 })
 
 pauseBtn.addEventListener("click", () => {
-  game.pause()
+  game.stop()
   clearInterval(painterInterval)
-  clearInterval(moveDownInterval)
 
   pauseBtn.style.display = "none"
   continueBtn.style.display = ""
@@ -66,13 +59,9 @@ pauseBtn.addEventListener("click", () => {
 continueBtn.addEventListener("click", () => {
   game.continue()
   painterInterval = setInterval(() => {
+    if (game.hasWonOrLost) clearInterval(painterInterval)
     tetrisCanvas.paint(game.getMatrix())
-    console.log("Painting")
   }, 100)
-
-  moveDownInterval = setInterval(() => {
-    game.moveCurrentPieceDown()
-  }, 500)
 
   pauseBtn.style.display = ""
   continueBtn.style.display = "none"
