@@ -4,11 +4,34 @@ class Tetris {
     this.lines = 0
     this.score = 0
     this.currentPiece = null
-    this.matrix = this.buildEmptyArray()
+    this.matrix = null
+    this.gameInterval = null
   }
 
   getMatrix() {
     return this.matrix
+  }
+
+  start() {
+    this.timer = 0
+    this.lines = 0
+    this.score = 0
+    this.currentPiece = this.generateNewPiece()
+    this.matrix = this.buildEmptyArray()
+    if (this.gameInterval) clearInterval(this.gameInterval)
+    this.gameInterval = setInterval(() => {
+      this.timer += 1
+    }, 1000)
+  }
+
+  pause() {
+    clearInterval(this.gameInterval)
+  }
+
+  continue() {
+    this.gameInterval = setInterval(() => {
+      this.timer + 1
+    }, 1)
   }
 
   updatePiece(callback) {
@@ -181,8 +204,6 @@ class Tetris {
 
     //shift lines
     for (let i = fullLines.length - 1; i >= 0; i--) {
-      // if (i === fullLines.length - 1) this.shiftDown(fullLines[i], 1)
-      // else this.shiftDown(fullLines[i], 1)
       this.shiftDown(fullLines[i], 1)
     }
 
