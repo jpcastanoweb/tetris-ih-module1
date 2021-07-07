@@ -65,8 +65,6 @@ class Tetris {
       }
       vals.push(newArr)
     }
-
-    console.table(vals)
   }
 
   moveCurrentPieceDown() {
@@ -77,7 +75,6 @@ class Tetris {
 
     //copying object
     const piecesWithIndexes = []
-    console.log("Bottom pieces: ", bottomPieces)
     for (let piece of bottomPieces) {
       piecesWithIndexes.push(Object.assign({}, piece))
     }
@@ -87,7 +84,6 @@ class Tetris {
       piece.x += centerX
       piece.y += centerY
     }
-    console.log("piecesWithIndexes", piecesWithIndexes)
 
     for (const piece of piecesWithIndexes) {
       // checking if there's a floor under
@@ -179,7 +175,6 @@ class Tetris {
   }
 
   triggerCollisionBelow() {
-    console.log("collision")
     const newPiece = this.generateNewPiece()
     this.currentPiece = newPiece
     this.updatePiece()
