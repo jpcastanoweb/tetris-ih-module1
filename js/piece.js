@@ -323,8 +323,8 @@ class BackwardS extends Piece {
         { y: 0, x: -1 },
       ],
       [
-        { y: 0, x: -1 },
-        { y: 1, x: 1 },
+        { y: 0, x: 1 },
+        { y: 1, x: -1 },
         { y: 1, x: 0 },
       ],
     ]
@@ -344,7 +344,7 @@ class BackwardS extends Piece {
         { y: 1, x: -1 },
       ],
       [
-        { y: 0, x: -1 },
+        { y: 0, x: 1 },
         { y: 1, x: 0 },
       ],
     ]
