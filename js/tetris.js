@@ -175,6 +175,11 @@ class Tetris {
   }
 
   triggerCollisionBelow() {
+    //check full lines
+    const fullLines = this.checkFullLines()
+    console.log("Checked full lines: ", fullLines)
+
+    // Generating new piece and placing it again
     const newPiece = this.generateNewPiece()
     this.currentPiece = newPiece
     this.updatePiece()
@@ -208,6 +213,20 @@ class Tetris {
         break
     }
     return newP
+  }
+
+  checkFullLines() {
+    const fullLines = []
+
+    for (let i = this.matrix.length - 1; i > 1; i--) {
+      let record = true
+      for (let space of this.matrix[i]) {
+        record = record && space.value
+      }
+      if (record) fullLines.push(i)
+    }
+
+    return fullLines
   }
 
   wonGame() {}
