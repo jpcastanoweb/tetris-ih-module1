@@ -5,7 +5,7 @@ class Canvas {
   }
 
   paint(matrix) {
-    this.ctx.clearRect(0, 0, 350, 630)
+    this.ctx.clearRect(0, 0, 300, 540)
 
     let x = 0
     let y = 0
@@ -13,14 +13,14 @@ class Canvas {
     for (let i = 0; i < matrix.length; i++) {
       for (let j = 0; j < matrix[0].length; j++) {
         if (matrix[i][j].value) {
-          x = j * 35
-          y = (i - 2) * 35 // -1 because there is an extra row on top, used to avoid crashes when rotations at the top
+          x = j * 30
+          y = (i - 2) * 30 // -1 because there is an extra row on top, used to avoid crashes when rotations at the top
 
           this.ctx.fillStyle = matrix[i][j].color
           this.ctx.strokeStyle = "black"
           this.ctx.lineWidth = 3
-          this.ctx.fillRect(x, y, 35, 35)
-          this.ctx.strokeRect(x, y, 35, 35)
+          this.ctx.fillRect(x, y, 30, 30)
+          this.ctx.strokeRect(x, y, 30, 30)
         }
       }
     }
