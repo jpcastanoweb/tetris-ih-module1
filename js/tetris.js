@@ -346,12 +346,10 @@ class Tetris {
 
   wonGame() {
     this.hasWonOrLost = "won"
-    console.log("WON GAME")
   }
 
   lostGame() {
     this.hasWonOrLost = "lost"
-    console.log("LOST GAME")
   }
 
   speedUp() {

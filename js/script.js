@@ -80,7 +80,6 @@ startBtn.addEventListener("click", () => {
   game.start()
 
   timerInterval = setInterval(() => {
-    console.log(game.timer)
     time.innerHTML = game.getTimeString()
   }, 1000)
 
@@ -122,7 +121,6 @@ continueBtn.addEventListener("click", () => {
   game.continue()
 
   timerInterval = setInterval(() => {
-    console.log(game.timer)
     time.innerHTML = game.getTimeString()
   }, 1000)
 

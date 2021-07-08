@@ -27,7 +27,6 @@ class Canvas {
   }
 
   paintWon() {
-    // this.paint(matrix)
     this.ctx.textBaseLine = "middle"
     this.ctx.textAlign = "center"
     this.ctx.fillStyle = "white"
