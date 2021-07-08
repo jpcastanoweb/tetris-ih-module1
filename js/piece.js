@@ -136,6 +136,7 @@ class Piece {
 class ForwardL extends Piece {
   constructor() {
     super()
+    this.localURL = "../images/pieces/forwardL.png"
     this.color = "rgb(230,162,57)"
     this.currentOrientation = 1
     this.orientations = [
@@ -186,6 +187,7 @@ class ForwardL extends Piece {
 class BackwardL extends Piece {
   constructor() {
     super()
+    this.localURL = "../images/pieces/backwardsL.png"
     this.color = "rgb(10,28,208)"
     this.currentOrientation = 3
     this.orientations = [
@@ -236,6 +238,7 @@ class BackwardL extends Piece {
 class Cube extends Piece {
   constructor() {
     super()
+    this.localURL = "../images/pieces/cube.png"
     this.color = "rgb(241,238,79)"
     this.orientations = [
       [
@@ -256,6 +259,7 @@ class Cube extends Piece {
 class ForwardS extends Piece {
   constructor() {
     super()
+    this.localURL = "../images/pieces/forwardS.png"
     this.color = "rgb(110,235,71)"
     this.orientations = [
       [
@@ -305,6 +309,7 @@ class ForwardS extends Piece {
 class BackwardS extends Piece {
   constructor() {
     super()
+    this.localURL = "../images/pieces/backwardS.png"
     this.color = "rgb(221,47,33)"
     this.orientations = [
       [
@@ -354,6 +359,7 @@ class BackwardS extends Piece {
 class Cross extends Piece {
   constructor() {
     super()
+    this.localURL = "../images/pieces/cross.png"
     this.color = "rgb(145,45,231)"
     this.currentOrientation = 2
     this.orientations = [
@@ -404,6 +410,7 @@ class Cross extends Piece {
 class Line extends Piece {
   constructor() {
     super()
+    this.localURL = "../images/pieces/line.png"
     this.color = "rgb(108,237,238)"
     this.currentOrientation = 2
     this.orientations = [
