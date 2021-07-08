@@ -4,10 +4,14 @@ const startBtn = document.getElementById("start-btn")
 const pauseBtn = document.getElementById("pause-btn")
 const continueBtn = document.getElementById("continue-btn")
 const nextPieceImg = document.getElementById("next-piece-img")
+const time = document.getElementById("time")
+const lines = document.getElementById("lines")
+const score = document.getElementById("score")
 
 pauseBtn.style.display = "none"
 continueBtn.style.display = "none"
 let painterInterval = null
+let timerInterval = null
 
 /* 
   FUNCTIONS
@@ -15,6 +19,14 @@ let painterInterval = null
 
 function updateNextPieceLink() {
   nextPieceImg.setAttribute("src", "./images/pieces/" + game.nextPiece + ".png")
+}
+
+function updateLines() {
+  lines.innerHTML = game.getLines()
+}
+
+function updateScore() {
+  score.innerHTML = game.getScore()
 }
 
 /* 
@@ -57,22 +69,32 @@ document.addEventListener("keydown", (e) => {
 
 startBtn.addEventListener("click", () => {
   if (painterInterval) clearInterval(painterInterval)
+  if (timerInterval) clearInterval(timerInterval)
 
   game.start()
 
   painterInterval = setInterval(() => {
     if (game.hasWonOrLost) clearInterval(painterInterval)
     tetrisCanvas.paint(game.getMatrix())
-    this.updateNextPieceLink()
+    updateLines()
+    updateScore()
+    updateNextPieceLink()
   }, 100)
+
+  timerInterval = setInterval(
+    () => (time.innerHTML = game.getTimeString()),
+    1000
+  )
 
   continueBtn.style.display = "none"
   pauseBtn.style.display = ""
+  startBtn.innerHTML = "<h2>RESTART</h2>"
 })
 
 pauseBtn.addEventListener("click", () => {
   game.stop()
   clearInterval(painterInterval)
+  clearInterval(timerInterval)
 
   pauseBtn.style.display = "none"
   continueBtn.style.display = ""
@@ -80,11 +102,19 @@ pauseBtn.addEventListener("click", () => {
 
 continueBtn.addEventListener("click", () => {
   game.continue()
+
   painterInterval = setInterval(() => {
     if (game.hasWonOrLost) clearInterval(painterInterval)
     tetrisCanvas.paint(game.getMatrix())
+    this.updateLines()
+    this.updateScore()
     this.updateNextPieceLink()
   }, 100)
+
+  timerInterval = setInterval(
+    () => (time.innerHTML = game.getTimeString()),
+    1000
+  )
 
   pauseBtn.style.display = ""
   continueBtn.style.display = "none"

@@ -24,6 +24,14 @@ class Tetris {
     return this.matrix
   }
 
+  getLines() {
+    return this.lines
+  }
+
+  getScore() {
+    return this.score
+  }
+
   start() {
     this.timer = 0
     this.lines = 0
@@ -215,16 +223,20 @@ class Tetris {
     //check full lines
     const fullLines = this.checkFullLines()
 
-    //clear
-    this.clearLines(fullLines)
+    if (fullLines.length > 0) {
+      //clear
+      this.clearLines(fullLines)
 
-    //shift lines
-    for (let i = fullLines.length - 1; i >= 0; i--) {
-      this.shiftDown(fullLines[i], 1)
+      //shift lines
+      for (let i = fullLines.length - 1; i >= 0; i--) {
+        this.shiftDown(fullLines[i], 1)
+      }
+
+      //Adding points to lines
+      this.addLines(fullLines.length)
+      //Add 10 points per line
+      this.addScore(fullLines.length * 10)
     }
-
-    //Adding points to lines
-    this.addPoints(fullLines.length)
 
     // Check if game is won
     // else Check if game is lost
@@ -236,6 +248,7 @@ class Tetris {
       this.stop()
       this.lostGame()
     } else {
+      this.addScore(8) // Add 8 points per piece placed
       this.currentPiece = this.generateNewPiece(this.nextPiece)
       this.nextPiece = this.generatePieceType()
       this.updatePiece()
@@ -320,8 +333,12 @@ class Tetris {
     }
   }
 
-  addPoints(lines) {
+  addLines(lines) {
     this.lines += lines
+  }
+
+  addScore(score) {
+    this.score += score
   }
 
   isGameLost() {
@@ -360,5 +377,28 @@ class Tetris {
         this.moveCurrentPieceDown()
       }, 500)
     }
+  }
+
+  getMinutes() {
+    let minutesNoSeconds = this.timer - this.getSeconds()
+    return minutesNoSeconds / 60
+  }
+
+  getSeconds() {
+    return Math.floor(this.timer) % 60
+  }
+
+  computeTwoDigitNumber(value) {
+    if (value < 10) {
+      return `0${value}`
+    } else {
+      return `${value}`
+    }
+  }
+
+  getTimeString() {
+    let minutes = this.computeTwoDigitNumber(this.getMinutes())
+    let secs = this.computeTwoDigitNumber(this.getSeconds())
+    return `${minutes}:${secs}`
   }
 }
