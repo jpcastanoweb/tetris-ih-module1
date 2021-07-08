@@ -133,8 +133,13 @@ continueBtn.addEventListener("click", () => {
     if (game.hasWonOrLost) {
       clearInterval(painterInterval)
       clearInterval(timerInterval)
-      if (game.hasWonOrLost == "won") tetrisCanvas.paintWon()
-      if (game.hasWonOrLost == "lost") tetrisCanvas.paintLost()
+      if (game.hasWonOrLost == "won") {
+        tetrisCanvas.paintWon()
+      }
+      if (game.hasWonOrLost == "lost") {
+        tetrisCanvas.paintLost()
+      }
+
       pauseBtn.style.display = "none"
     }
   }, 100)

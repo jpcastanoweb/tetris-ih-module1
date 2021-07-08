@@ -8,6 +8,13 @@ const pieceTypes = [
   "line",
 ]
 
+const lostSound = document.getElementById("lost-sound")
+const collisionSound = document.getElementById("collision-sound")
+const fullLineSound = document.getElementById("full-line-sound")
+const startSound = document.getElementById("start-sound")
+const rotateSound = document.getElementById("rotate-sound")
+const wonSound = document.getElementById("won-sound")
+
 class Tetris {
   constructor() {
     this.timer = 0
@@ -33,6 +40,7 @@ class Tetris {
   }
 
   start() {
+    startSound.play()
     this.timer = 0
     this.lines = 0
     this.score = 0
@@ -170,6 +178,7 @@ class Tetris {
   }
 
   rotateCurrentPiece() {
+    rotateSound.play()
     this.currentPiece.rotate()
     this.updatePiece()
 
@@ -248,6 +257,8 @@ class Tetris {
       this.stop()
       this.lostGame()
     } else {
+      if (fullLines.length > 0) fullLineSound.play()
+      else collisionSound.play()
       this.addScore(8) // Add 8 points per piece placed
       this.currentPiece = this.generateNewPiece(this.nextPiece)
       this.nextPiece = this.generatePieceType()
@@ -346,10 +357,12 @@ class Tetris {
 
   wonGame() {
     this.hasWonOrLost = "won"
+    wonSound.play()
   }
 
   lostGame() {
     this.hasWonOrLost = "lost"
+    lostSound.play()
   }
 
   speedUp() {
