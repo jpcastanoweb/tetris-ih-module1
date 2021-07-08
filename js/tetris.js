@@ -13,7 +13,7 @@ class Tetris {
     this.timer = 0
     this.lines = 0
     this.score = 0
-    this.lineGoal = 1
+    this.lineGoal = 15
     this.currentPiece = null
     this.matrix = null
     this.gameInterval = null
