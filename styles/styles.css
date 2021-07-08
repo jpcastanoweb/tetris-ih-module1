@@ -66,15 +66,20 @@ header {
 #next-piece {
     /* background-color: aqua; */
     height: 35%;
-    background-color: black;
+    /* background-color: black; */
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 4px solid gray;
 }
 
 #game {
     padding: 10px;
+}
+
+#next-piece-img {
+    width: 150px;
 }
 
 /* 
@@ -104,6 +109,3 @@ header {
     padding: 30px;
 }
 
-.next-piece-img {
-    width: 150px;
-}

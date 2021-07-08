@@ -2,10 +2,20 @@ const game = new Tetris()
 const tetrisCanvas = new Canvas()
 const startBtn = document.getElementById("start-btn")
 const pauseBtn = document.getElementById("pause-btn")
-pauseBtn.style.display = "none"
 const continueBtn = document.getElementById("continue-btn")
+const nextPieceImg = document.getElementById("next-piece-img")
+
+pauseBtn.style.display = "none"
 continueBtn.style.display = "none"
 let painterInterval = null
+
+/* 
+  FUNCTIONS
+*/
+
+function updateNextPieceLink() {
+  nextPieceImg.setAttribute("src", "./images/pieces/" + game.nextPiece + ".png")
+}
 
 /* 
   EVENTS
@@ -53,6 +63,7 @@ startBtn.addEventListener("click", () => {
   painterInterval = setInterval(() => {
     if (game.hasWonOrLost) clearInterval(painterInterval)
     tetrisCanvas.paint(game.getMatrix())
+    this.updateNextPieceLink()
   }, 100)
 
   continueBtn.style.display = "none"
@@ -72,6 +83,7 @@ continueBtn.addEventListener("click", () => {
   painterInterval = setInterval(() => {
     if (game.hasWonOrLost) clearInterval(painterInterval)
     tetrisCanvas.paint(game.getMatrix())
+    this.updateNextPieceLink()
   }, 100)
 
   pauseBtn.style.display = ""

@@ -1,3 +1,13 @@
+const pieceTypes = [
+  "forwardL",
+  "backwardL",
+  "cube",
+  "cross",
+  "forwardS",
+  "backwardS",
+  "line",
+]
+
 class Tetris {
   constructor() {
     this.timer = 0
@@ -18,7 +28,8 @@ class Tetris {
     this.timer = 0
     this.lines = 0
     this.score = 0
-    this.currentPiece = this.generateNewPiece()
+    this.currentPiece = this.generateNewPiece(this.generatePieceType())
+    this.nextPiece = this.generatePieceType()
     this.matrix = this.buildEmptyArray()
     this.hasWonOrLost = false
     if (this.gameInterval) clearInterval(this.gameInterval)
@@ -225,35 +236,44 @@ class Tetris {
       this.stop()
       this.lostGame()
     } else {
-      const newPiece = this.generateNewPiece()
-      this.currentPiece = newPiece
+      this.currentPiece = this.generateNewPiece(this.nextPiece)
+      this.nextPiece = this.generatePieceType()
       this.updatePiece()
     }
+
+    console.log("Current Piece: ", this.currentPiece)
+    console.log("Next piece ", this.nextPiece)
   }
 
-  generateNewPiece() {
-    let random = Math.floor(Math.random() * 7)
+  generatePieceType() {
+    let newType = pieceTypes[Math.floor(Math.random() * pieceTypes.length)]
+    console.log("newType: ", newType)
+    return newType
+  }
+
+  generateNewPiece(type) {
+    console.log("Type inside generate new piece: ", type)
     let newP = null
-    switch (random) {
-      case 0:
+    switch (type) {
+      case "forwardL":
         newP = new ForwardL()
         break
-      case 1:
+      case "backwardL":
         newP = new BackwardL()
         break
-      case 2:
+      case "cube":
         newP = new Cube()
         break
-      case 3:
-        newP = new Cross()
-        break
-      case 4:
+      case "forwardS":
         newP = new ForwardS()
         break
-      case 5:
+      case "backwardS":
         newP = new BackwardS()
         break
-      case 6:
+      case "cross":
+        newP = new Cross()
+        break
+      case "line":
         newP = new Line()
         break
     }
