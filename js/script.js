@@ -16,6 +16,7 @@ document.addEventListener("keydown", (e) => {
 
   switch (e.keyCode) {
     case 32:
+      // game.speedUp()
       break
     case 37:
       game.moveCurrentPieceLeft()
@@ -33,6 +34,16 @@ document.addEventListener("keydown", (e) => {
       break
   }
 })
+
+// document.addEventListener("keyup", (e) => {
+//   e.preventDefault()
+
+//   switch (e.keyCode) {
+//     case 32:
+//       game.slowDown()
+//       break
+//   }
+// })
 
 startBtn.addEventListener("click", () => {
   if (painterInterval) clearInterval(painterInterval)

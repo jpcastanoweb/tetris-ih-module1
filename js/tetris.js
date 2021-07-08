@@ -3,7 +3,7 @@ class Tetris {
     this.timer = 0
     this.lines = 0
     this.score = 0
-    this.lineGoal = 10
+    this.lineGoal = 20
     this.currentPiece = null
     this.matrix = null
     this.gameInterval = null
@@ -25,7 +25,7 @@ class Tetris {
     this.gameInterval = setInterval(() => {
       this.timer += 0.5
       this.moveCurrentPieceDown()
-    }, 1000)
+    }, 500)
   }
 
   stop() {
@@ -320,5 +320,25 @@ class Tetris {
   lostGame() {
     this.hasWonOrLost = true
     console.log("LOST GAME")
+  }
+
+  speedUp() {
+    if (this.gameInterval) {
+      clearInterval(this.gameInterval)
+      this.gameInterval = setInterval(() => {
+        this.timer += 0.2
+        this.moveCurrentPieceDown()
+      }, 200)
+    }
+  }
+
+  slowDown() {
+    if (this.gameInterval) {
+      clearInterval(this.gameInterval)
+      this.gameInterval = setInterval(() => {
+        this.timer += 0.5
+        this.moveCurrentPieceDown()
+      }, 500)
+    }
   }
 }
