@@ -13,7 +13,7 @@ class Tetris {
     this.timer = 0
     this.lines = 0
     this.score = 0
-    this.lineGoal = 10
+    this.lineGoal = 1
     this.currentPiece = null
     this.matrix = null
     this.gameInterval = null
@@ -53,7 +53,7 @@ class Tetris {
 
   continue() {
     this.gameInterval = setInterval(() => {
-      this.timer + 0.5
+      this.timer += 0.5
       this.moveCurrentPieceDown()
     }, 500)
   }
@@ -253,19 +253,14 @@ class Tetris {
       this.nextPiece = this.generatePieceType()
       this.updatePiece()
     }
-
-    console.log("Current Piece: ", this.currentPiece)
-    console.log("Next piece ", this.nextPiece)
   }
 
   generatePieceType() {
     let newType = pieceTypes[Math.floor(Math.random() * pieceTypes.length)]
-    console.log("newType: ", newType)
     return newType
   }
 
   generateNewPiece(type) {
-    console.log("Type inside generate new piece: ", type)
     let newP = null
     switch (type) {
       case "forwardL":
@@ -350,12 +345,12 @@ class Tetris {
   }
 
   wonGame() {
-    this.hasWonOrLost = true
+    this.hasWonOrLost = "won"
     console.log("WON GAME")
   }
 
   lostGame() {
-    this.hasWonOrLost = true
+    this.hasWonOrLost = "lost"
     console.log("LOST GAME")
   }
 
@@ -390,9 +385,9 @@ class Tetris {
 
   computeTwoDigitNumber(value) {
     if (value < 10) {
-      return `0${value}`
+      return `0${Math.floor(value)}`
     } else {
-      return `${value}`
+      return `${Math.floor(value)}`
     }
   }
 

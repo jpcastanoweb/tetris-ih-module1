@@ -25,4 +25,21 @@ class Canvas {
       }
     }
   }
+
+  paintWon() {
+    // this.paint(matrix)
+    this.ctx.textBaseLine = "middle"
+    this.ctx.textAlign = "center"
+    this.ctx.fillStyle = "white"
+    this.ctx.font = `50px Overpass Mono`
+    this.ctx.fillText("YOU WON", this.canvas.width / 2, this.canvas.height / 2)
+  }
+
+  paintLost() {
+    this.ctx.textBaseLine = "middle"
+    this.ctx.textAlign = "center"
+    this.ctx.fillStyle = "white"
+    this.ctx.font = `50px Overpass Mono`
+    this.ctx.fillText("YOU LOST", this.canvas.width / 2, this.canvas.height / 2)
+  }
 }

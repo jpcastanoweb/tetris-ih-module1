@@ -31,6 +31,10 @@ function updateScore() {
   score.innerHTML = game.getScore()
 }
 
+function won() {
+  modal.style.display = "block"
+}
+
 /* 
   EVENTS
 */
@@ -75,12 +79,24 @@ startBtn.addEventListener("click", () => {
 
   game.start()
 
+  timerInterval = setInterval(() => {
+    console.log(game.timer)
+    time.innerHTML = game.getTimeString()
+  }, 1000)
+
   painterInterval = setInterval(() => {
-    if (game.hasWonOrLost) clearInterval(painterInterval)
+    this.updateLines()
+    this.updateScore()
+    this.updateNextPieceLink()
     tetrisCanvas.paint(game.getMatrix())
-    updateLines()
-    updateScore()
-    updateNextPieceLink()
+
+    if (game.hasWonOrLost) {
+      clearInterval(painterInterval)
+      clearInterval(timerInterval)
+      if (game.hasWonOrLost == "won") tetrisCanvas.paintWon()
+      if (game.hasWonOrLost == "lost") tetrisCanvas.paintLost()
+      pauseBtn.style.display = "none"
+    }
   }, 100)
 
   timerInterval = setInterval(
@@ -105,18 +121,25 @@ pauseBtn.addEventListener("click", () => {
 continueBtn.addEventListener("click", () => {
   game.continue()
 
+  timerInterval = setInterval(() => {
+    console.log(game.timer)
+    time.innerHTML = game.getTimeString()
+  }, 1000)
+
   painterInterval = setInterval(() => {
-    if (game.hasWonOrLost) clearInterval(painterInterval)
-    tetrisCanvas.paint(game.getMatrix())
     this.updateLines()
     this.updateScore()
     this.updateNextPieceLink()
-  }, 100)
+    tetrisCanvas.paint(game.getMatrix())
 
-  timerInterval = setInterval(
-    () => (time.innerHTML = game.getTimeString()),
-    1000
-  )
+    if (game.hasWonOrLost) {
+      clearInterval(painterInterval)
+      clearInterval(timerInterval)
+      if (game.hasWonOrLost == "won") tetrisCanvas.paintWon()
+      if (game.hasWonOrLost == "lost") tetrisCanvas.paintLost()
+      pauseBtn.style.display = "none"
+    }
+  }, 100)
 
   pauseBtn.style.display = ""
   continueBtn.style.display = "none"

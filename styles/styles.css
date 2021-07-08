@@ -78,11 +78,21 @@ header {
 
 #game {
     padding: 10px;
+
 }
 
 #next-piece-img {
     width: 40%;
     filter: brightness(90%);
+}
+
+#sign {
+    height: 350px;
+    width: 650px;
+    z-index: 2;
+    position: absolute;
+    left: 0px;
+    right: 0px;
 }
 
 /* 
