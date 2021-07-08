@@ -7,9 +7,11 @@ const nextPieceImg = document.getElementById("next-piece-img")
 const time = document.getElementById("time")
 const lines = document.getElementById("lines")
 const score = document.getElementById("score")
+const goalHTML = document.getElementById("goal")
 
 pauseBtn.style.display = "none"
 continueBtn.style.display = "none"
+goalHTML.innerHTML = game.lineGoal
 let painterInterval = null
 let timerInterval = null
 
