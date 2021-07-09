@@ -30,7 +30,7 @@
                 <div class="instruction-block">
                     <h3>Goal</h3>
                     <div class="instructions-content-block">
-                        <p>To win, clear <span id="goal"></span> lines. Do not reach the top, because you will lose.</p>
+                        <p>To win, clear <span class="goal"></span> lines. Do not reach the top, because you will lose.</p>
                     </div>
                 </div>
                 <div class="instruction-block">
@@ -61,9 +61,13 @@
                     <button id="continue-btn" class="game-btn"><h2>CONTINUE</h2></button>
                 </div>
                 <div id="scores">
-                    <h2>Time: <span id="time">00:00</span></h2>
-                    <h2>Lines: <span id="lines">0</span></h2>
-                    <h2>Score: <span id="score">0</span></h2>
+                    <div id="goal-section">
+                        <span class="score-box-heading">Goal: <span id="goal-label" class="goal"></span><input hidden id= "goal-input" type="number" placeholder=""></span> 
+                        <button id="change-goal-btn">CHANGE</button>
+                    </div>
+                    <span class="score-box-heading block">Time: <span id="time">00:00</span></span>
+                    <span class="score-box-heading block">Lines: <span id="lines">0</span></span>
+                    <span class="score-box-heading block">Score: <span id="score">0</span></span>
                 </div>
                 <h2>Next piece:</h2>
                 <div id="next-piece">

@@ -7,11 +7,16 @@ const nextPieceImg = document.getElementById("next-piece-img")
 const time = document.getElementById("time")
 const lines = document.getElementById("lines")
 const score = document.getElementById("score")
-const goalHTML = document.getElementById("goal")
+const goalsHTML = document.getElementsByClassName("goal")
+const changeBtn = document.getElementById("change-goal-btn")
+const goalLabel = document.getElementById("goal-label")
+const goalInput = document.getElementById("goal-input")
 
 pauseBtn.style.display = "none"
 continueBtn.style.display = "none"
-goalHTML.innerHTML = game.lineGoal
+for (let els of goalsHTML) {
+  els.innerHTML = game.lineGoal
+}
 let painterInterval = null
 let timerInterval = null
 
@@ -78,6 +83,10 @@ startBtn.addEventListener("click", () => {
   if (timerInterval) clearInterval(timerInterval)
 
   game.start()
+
+  for (let els of goalsHTML) {
+    els.innerHTML = game.lineGoal
+  }
 
   timerInterval = setInterval(() => {
     time.innerHTML = game.getTimeString()
@@ -146,4 +155,23 @@ continueBtn.addEventListener("click", () => {
 
   pauseBtn.style.display = ""
   continueBtn.style.display = "none"
+})
+
+changeBtn.addEventListener("click", () => {
+  if (changeBtn.innerHTML === "CHANGE") {
+    changeBtn.innerHTML = "SET"
+    goalLabel.setAttribute("hidden", "")
+    goalInput.removeAttribute("hidden")
+  } else {
+    changeBtn.innerHTML = "CHANGE"
+    goalLabel.removeAttribute("hidden")
+    goalInput.setAttribute("hidden", "")
+
+    let newGoal = Number(goalInput.value)
+    if (newGoal > 0) game.lineGoal = newGoal
+
+    for (let els of goalsHTML) {
+      els.innerHTML = game.lineGoal
+    }
+  }
 })
